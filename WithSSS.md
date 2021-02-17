@@ -69,11 +69,21 @@
    - [Japanese](https://github.com/EXPRESSCLUSTER/kubernetes/blob/master/HowToDeploySSS_jp.md)
 
 ## Deploy Fluentd DaemonSet
-1. Download fluentd-rbac.yaml and deploy it.
+1. Download [fluentd-rbac.yaml](https://github.com/EXPRESSCLUSTER/Fluentd/blob/master/yaml/fluentd-rbac.yaml) and deploy it.
    ```sh 
    $ kubectl apply -f fluentd-rbac.yaml
    ```
-1. Download fluentd-daemonset-forward.yaml and deploy it.
+1. Download [fluentd-daemonset-forward.yaml](https://github.com/EXPRESSCLUSTER/Fluentd/blob/master/yaml/fluentd-daemonset-forward.yaml) and set your host IP address.
+   ```yaml
+    :
+           env:
+             - name:  FLUENT_FOWARD_HOST
+               value: "HOST IP ADDRESS"
+             - name:  FLUENT_FOWARD_PORT
+               value: "24224"    
+    :
+   ```
+1. Deploy DaemonSet.
    ```sh
    $ kubectl apply -f fluentd-daemonset-forward.yaml
    ```
